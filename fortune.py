@@ -1,0 +1,2 @@
+def fortune():
+    pass

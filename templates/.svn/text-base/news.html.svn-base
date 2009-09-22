@@ -1,0 +1,29 @@
+{% load humanlize %}
+<div class="news">
+	<a href="/feeds/latest/" title="Feed me!"><img src="/resource/images/rss.png"></a>
+	<ul class="recent-posts">
+		<h3>最近发表的文章</h3>
+		{%for entry in recent_posts%}
+			<li>
+				♨<a href="/view/{{entry.key}}">{{entry.title}} - {{entry.who.username}}</a>
+			</li>
+		{%endfor%}
+	</ul>
+	<ul class="recent-comments">
+		<h3>最近发表的评论</h3>
+		{%for entry in recent_comments%}
+			<li>
+				♨<a href="/view/{{entry.refer.key}}/">{{entry.what|striptags|truncatetext}} - {{entry.who.username}}</a>
+			</li>
+		{%endfor%}
+	</ul>
+	<ul class="most-read">
+		<h3>阅读最多的文章</h3>
+		{%for entry in read_most%}
+			<li>
+				♨<a href="/view/{{entry.key}}">{{entry.title}} - {{entry.who.username}}</a>
+			</li>
+		{%endfor%}
+	</ul>
+	<div class="none"></div>
+</div>

@@ -1,0 +1,17 @@
+<li class="entry" id="entry-{{entry.id}}">
+	<div class="meta">
+		<ul>
+			<li>{{entry.who.username}}</li>
+			<li>于{{entry.when|human_time}}发表</li>	
+		</ul>
+	</div>
+	<div class="content">
+		<div class="text">{{entry.what|safe}}</div>
+		{%if user.is_authenticated%}
+			<div class="edit-menu">
+				<a href="/delete/{{entry.key}}/?type=comment">删除</a> 
+			</div>
+		{%endif%}
+	</div>
+	<div class="none"></div>
+</li>

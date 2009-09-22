@@ -1,0 +1,20 @@
+<div class="stat">
+
+	<div class="like" title="{{jot.like}}人喜欢这句话">
+		<div class="chart" style="font-size:7px;color:#7eb4e7;background:#7eb4e7;width:{{jot.like}}px">&nbsp;</div>
+		<div class="none"></div>
+
+		<div class="chart" style="font-size:7px;color:#67a7e3;background:#67a7e3;width:{{jot.like}}px">&nbsp;</div>
+		<div class="desc">{{jot.like}}</div>
+		<div class="none"></div>
+	</div>
+	
+	<div class="unlike" title="{{jot.unlike}}人不喜欢这句话">
+		<div class="chart" style="font-size:7px;color:#cbe1f6;background:#cbe1f6;width:{{jot.unlike}}px">&nbsp;</div>
+		<div class="none"></div>
+		<div class="chart" style="font-size:7px;color:#c2dcf4;background:#c2dcf4;width:{{jot.unlike}}px">&nbsp;</div>
+		<div class="desc">{{jot.unlike}}</div>
+		<div class="none"></div>
+	</div>
+</div>
+

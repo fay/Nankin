@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load humanlize %}
+{% block title %}ASC App Team{% endblock %}
+{% block css %}
+{% endblock %}
+{% block content %}
+
+<div class="entries">
+	<ul>
+	{%for entry in jots%}
+		{%include "entry.html"%}
+	{%endfor%}
+	</ul>
+</div>
+<div class="paginator">			
+	{% autoescape off %}
+		{{paginator}}
+	{% endautoescape %}
+</div>
+{% endblock %}
+{%block extra%}		
+<div class="shortcut" id="shortcut">
+	{%include 'news.html'%}
+</div>
+{%endblock%}

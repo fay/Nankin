@@ -1,0 +1,25 @@
+<li class="entry" id="entry-{{entry.id}}">
+	<div class="meta">
+		<ul>
+			<li>{{entry.who.username}}</li>
+			<li><span class="time"></span>于{{entry.when|human_time}}发表</li>	
+			<li>分类在:{{entry.tags|first}}</li>			
+		</ul>
+	</div>
+	<div class="content">
+		<div class="title">
+			<h1><a href="/view/{{entry.key}}/">{{entry.title}}</a> <a class="anchor" href="#entry-{{entry.id}}">¶</a></h1>
+		</div>
+		<div class="text">{{entry.what|removetags:"div pre"|safe}}</div>
+		<div class="edit-menu">
+		{%if user.is_authenticated%}
+				<a href="/edit/{{entry.key}}/">编辑</a> |
+				<a href="/delete/{{entry.key}}/">删除</a> |		
+				<a href="/view/{{entry.key}}/#comment-form">有话要放</a> |			
+		{%endif%}
+			<a href="/view/{{entry.key}}/">阅读次数({{entry.read_num}})</a> |
+			<a href="/view/{{entry.key}}/#comments">{{entry.comment_num}} comments »</a>
+		</div>
+	</div>
+	<div class="none"></div>
+</li>

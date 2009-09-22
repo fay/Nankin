@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}写文章 - ASC App Team{% endblock %}
+{% block css %}
+{%ifequal mode 'markdown'%}
+<script type="text/javascript" src="/resource/js/wmd/wmd.js"></script>
+{%endifequal%}
+{%ifnotequal mode  'markdown'%}
+<!-- TinyMCE -->
+<script type="text/javascript" src="/resource/js/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript">
+	tinyMCE.init({
+		mode : "textareas",
+		theme : "advanced",
+	});
+</script>
+{%endifnotequal%}
+<!-- /TinyMCE -->
+
+{% endblock %}
+{% block content %}
+<div class="publish">
+	<form action="/post/" method="post">
+		<label>名正则言顺...</label>
+		<br>
+		<input type="text" name="title" value="{{jot.title}}">
+		<br>
+		<label>记录脑海中反复吟唱的字句...</label>
+		<br>
+		<textarea rows="15" cols="76" name="what">{{jot.what|safe}}</textarea>
+		<div>
+			<a href="?mode={%ifequal mode 'markdown'%}html{%endifequal%}{%ifnotequal mode 'markdown'%}markdown{%endifnotequal%}">
+				<label>
+					(切换到{%ifequal mode 'markdown'%}默认{%endifequal%}{%ifnotequal mode 'markdown'%}markdown{%endifnotequal%}编辑模式)
+				</label>
+			</a>
+		</div>
+		<br>
+		<label>分类狂？</label>
+		<input type="text" name="tags" value="{{jot.tags|first}}">		
+		<br>
+		<input type="hidden" name="edit-key" value="{{jot.key}}"/>
+		<input type="submit" value="发布">
+	</form>
+</div>
+<div class="none"></div>
+{% endblock %}
