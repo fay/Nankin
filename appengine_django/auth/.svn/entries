@@ -4,7 +4,7 @@ dir
 74
 http://google-app-engine-django.googlecode.com/svn/trunk/appengine_django/auth
 http://google-app-engine-django.googlecode.com/svn
-replace
+delete
 
 
 2008-10-07T17:56:50.624422Z

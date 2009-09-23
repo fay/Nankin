@@ -4,7 +4,7 @@ dir
 74
 http://google-app-engine-django.googlecode.com/svn/trunk/appengine_django/sessions/backends
 http://google-app-engine-django.googlecode.com/svn
-replace
+delete
 
 
 2008-09-22T10:49:08.854544Z

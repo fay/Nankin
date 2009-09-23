@@ -4,13 +4,13 @@ dir
 74
 http://google-app-engine-django.googlecode.com/svn/trunk/appengine_django/tests
 http://google-app-engine-django.googlecode.com/svn
-replace
+delete
 
 
 2009-02-10T10:25:58.230328Z
 72
 mattbrown.nz
-
+has-props
 
 svn:special svn:externals svn:needs-lock
 
