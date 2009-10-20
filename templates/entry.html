@@ -1,9 +1,10 @@
 <li class="entry" id="entry-{{entry.id}}">
 	<div class="meta">
 		<ul>
-			<li>{{entry.who.username}}</li>
-			<li><span class="time"></span>于{{entry.when|human_time}}发表</li>	
-			<li>分类在:{{entry.tags|first}}</li>			
+			<li><span class="user">&nbsp;</span>{{entry.who.username}}</li>
+			<li><span class="time">&nbsp;</span>于{{entry.when|human_time}}发表</li>	
+			<li>分类在:{{entry.tags|first}}</li>
+			<li><span class="tag">&nbsp;</span>{%for tag in entry.tags%}<a href="/search/tag/{{tag}}/">{{tag}}</a> {%endfor%}</li>				
 		</ul>
 	</div>
 	<div class="content">
@@ -19,6 +20,11 @@
 		{%endif%}
 			<a href="/view/{{entry.key}}/">阅读次数({{entry.read_num}})</a> |
 			<a href="/view/{{entry.key}}/#comments">{{entry.comment_num}} comments »</a>
+		</div>
+		<div class="bookmark">
+		<img src="http://static.delicious.com/img/delicious.small.gif" height="10" width="10" alt="Delicious" />
+<a href="http://delicious.com/save" onclick="window.open('http://delicious.com/save?v=5&amp;noui&amp;jump=close&amp;url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title), 'delicious','toolbar=no,width=550,height=550'); return false;"> Bookmark this on Delicious</a>
+		
 		</div>
 	</div>
 	<div class="none"></div>

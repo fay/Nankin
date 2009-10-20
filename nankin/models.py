@@ -15,7 +15,14 @@ class Comment(db.Model):
         self.refer.comment_num -= 1
         self.refer.put()
         self.delete()
-        
+
+class Page(db.Model):
+    name = db.StringProperty()
+    what = db.TextProperty()
+    when = db.DateTimeProperty(auto_now_add=True)
+    who = db.ReferenceProperty(User)
+    path = db.StringProperty()
+     
 class Jot(db.Model):
     id = db.IntegerProperty()
     title = db.StringProperty()

@@ -13,8 +13,9 @@ indexes:
   properties:
   - name: refer
   - name: when
+
 - kind: Jot
   properties:
-  - name: read_num
+  - name: tags
+  - name: when
     direction: desc
-

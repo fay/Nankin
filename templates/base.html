@@ -29,62 +29,65 @@
 		<![endif]-->
 		{% block css %}{% endblock %}
 	</head>
-	<body>	
-		<div class="head">
-			<div class="logo">
-				<h1><a href="/">ASC App Team</a></h1>
-			</div>
-			<div class="meta">
-			
-				<a href="/publish/">发布文字</a> | 
-				{% if user.is_authenticated %}
-					Welcome ,{{user}}
-					<a href="/accounts/logout/">注销此次登录</a>
-				{% else %}
-					<a href="/accounts/login/">用Google帐户登录</a> 
-				{% endif %}
-				<p class="google-cse">			
-				<!-- Use of this code assumes agreement with the Google Custom Search Terms of Service. -->
-				<!-- The terms of service are available at /cse/docs/tos.html -->
-				<form name="cse" id="searchbox_demo" action="http://www.google.com/cse">
-				  <input type="hidden" name="cref" value="" />
-				  <input type="hidden" name="ie" value="utf-8" />
-				  <input type="hidden" name="hl" value="" />
-				  <input name="q" type="text" size="23" />
-				  <input type="submit" name="sa" value="Search" />
-				</form>
-				<script type="text/javascript" src="http://www.google.com/cse/tools/onthefly?form=searchbox_demo&lang="></script>
-				</p>
-			</div>			
-			<div class="none"></div>
-			<div class="menu">
-				<a class="link" href="/">Home</a> | 
-				<a class="link" href="/about/">About</a> | 
-			</div>
-
-			<div class="paginator">			
-				{% autoescape off %}
-					{{paginator}}
-				{% endautoescape %}
-			</div>		
+	<body class="body">	
+		<div class="heads">
+			<div class="head">
+				<div class="logo">
+					<h1><a href="/">ASC App Te<span>@</span>m</a></h1>
+				</div>
+				<div class="meta">				
+					<a href="/publish/">发布文字</a> | 
+					{% if user.is_authenticated %}
+						Welcome ,{{user}}
+						<a href="/accounts/logout/">注销此次登录</a>
+					{% else %}
+						<a href="/accounts/login/">用Google帐户登录</a> 
+					{% endif %}
+					<p class="google-cse">			
+					<!-- Use of this code assumes agreement with the Google Custom Search Terms of Service. -->
+					<!-- The terms of service are available at /cse/docs/tos.html -->
+					<form name="cse" id="searchbox_demo" action="http://www.google.com/cse">
+					  <input type="hidden" name="cref" value="" />
+					  <input type="hidden" name="ie" value="utf-8" />
+					  <input type="hidden" name="hl" value="" />
+					  <input name="q" type="text" size="23" />
+					  <input type="submit" name="sa" value="Search" />
+					</form>
+					<script type="text/javascript" src="http://www.google.com/cse/tools/onthefly?form=searchbox_demo&lang="></script>
+					</p>
+				</div>			
 				<div class="none"></div>
-			
+				<div class="control">
+					<div class="menu">
+						<a class="link" href="/">Home</a> | 
+						<a class="link" href="/about/">About</a> | 
+					</div>
+					
+					<div class="paginator">			
+						{% autoescape off %}
+							{{paginator}}
+						{% endautoescape %}
+					</div>		
+					<div class="none"></div>
+				</div>
+			</div>
 		</div>
-
-		<div class="page">
-			{% block content %}content{% endblock %}
-		</div>
-		{% block extra %}{% endblock %}
-		<div class="footer">
-			<p>Without any &copy; reserved.2009 Mind Games Team.
-				Powered By 
-				 <a href="http://code.google.com/appengine" target="blank"><img src="http://code.google.com/appengine/images/appengine-silver-120x30.gif" alt="Powered by Google App Engine" />
-			 	</a></p>
+		<div class="content">
+			<div class="page">
+				{% block content %}content{% endblock %}
+			</div>
+			{% block extra %}{% endblock %}
+			<div class="footer">
+				<p>Without any &copy; reserved.2009 Mind Games Team.
+					Powered By 
+					 <a href="http://code.google.com/appengine" target="blank"><img src="http://code.google.com/appengine/images/appengine-silver-120x30.gif" alt="Powered by Google App Engine" />
+				 	</a></p>
+			 </div>
 		 </div>
 		<!-- Include the Google Friend Connect javascript library. -->
 		<script type="text/javascript" src="http://www.google.com/friendconnect/script/friendconnect.js"></script>
 		<!-- Define the div tag where the gadget will be inserted. -->
-		<div id="div-8534318680954229230"></div>
+		<div id="div-412012280592275353"></div>
 		<!-- Render the gadget into a div. -->
 		<script type="text/javascript">
 		var skin = {};
@@ -101,14 +104,15 @@
 		skin['CONTENT_HEADLINE_COLOR'] = '#333333';
 		skin['POSITION'] = 'bottom';
 		skin['DEFAULT_COMMENT_TEXT'] = '- add your comment here -';
-		skin['HEADER_TEXT'] = '\u8bc4\u8bba\u4e0e\u53cd\u9988';
+		skin['HEADER_TEXT'] = 'Comments';
 		google.friendconnect.container.setParentUrl('/' /* location of rpc_relay.html and canvas.html */);
 		google.friendconnect.container.renderSocialBar(
-		 { id: 'div-8534318680954229230',
-		   site: '09009168055682763514',
-		   'view-params':{"scope":"SITE","allowAnonymousPost":"true","features":"video,comment","showWall":"true"}
+		 { id: 'div-412012280592275353',
+		   site: '15903587830891420184',
+		   'view-params':{"scope":"SITE","features":"video,comment","showWall":"true"}
 		 },
 		  skin);
 		</script>
+
 	</body>
 </html>

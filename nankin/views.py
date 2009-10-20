@@ -4,29 +4,39 @@ from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
 from google.appengine.api import users
-from nankin.models import Jot, Vote, Meta, Comment
+from nankin.models import Jot, Vote, Meta, Comment, Page
 from nankin import utils
 from appengine_django.auth.models import User
 from GChartWrapper import HorizontalBarStack
 RECENT_POST_SIZE = 5
 
-def index(request):
+def index(request):  
     try:
         page = int(request.GET['page'])
     except:
-        page = 1
-    paginator = utils.createPaginator(page=page)
+        page = 1  
     jots = Jot.all().order('-when').fetch(utils.PAGE_SIZE, utils.PAGE_SIZE * (page - 1))
+    return list(request, jots)
+    
+    
+    
+def list(request, jots):
+    try:
+        page = int(request.GET['page'])
+    except:
+        page = 1  
+    paginator = utils.createPaginator(page=page)
     for jot in jots:
-        jot.what = utils.strip_tags(jot.what)[:200] + "..."
+        if jot.tags and jot.tags[0] != 'photo':
+            jot.what = utils.strip_tags(jot.what)[:200] + "..."
     recent_posts = Jot.all().order('-when').fetch(RECENT_POST_SIZE, 0)
     recent_comments = Comment.all().order('-when').fetch(RECENT_POST_SIZE, 0)
     read_most = Jot.all().order('-read_num').fetch(RECENT_POST_SIZE, 0)
-    
     return render_to_response('index.html', {'jots':jots, 'paginator':paginator,
                                              'recent_posts':recent_posts, 'recent_comments':recent_comments,
                                              'read_most':read_most},
                                              context_instance=RequestContext(request))
+    
 
 def about(request):
     about = Jot.all().filter('tags =', 'about').get()
@@ -79,8 +89,8 @@ def comment(request, key):
     what = request.POST.get('what', None)
     #google user
     user = users.get_current_user()
-    #dajngo user
-    user = User.all().filter('user = ',user).get()
+    #django user
+    user = User.all().filter('user = ', user).get()
     try:
         jot = Jot.get(key)
     except Exception, e:
@@ -114,7 +124,7 @@ def edit(request, key):
         jot = Jot.get(key)
     except Exception, e:
         raise Httindexp404
-    if not (jot.who == user):
+    if not (jot.who.user == user):
         return HttpResponseRedirect('/')
     return render_to_response('publish.html', {'jot':jot, 'mode':mode}, context_instance=RequestContext(request))
     
@@ -124,18 +134,19 @@ def post(request):
     what = request.POST.get('what', None)
     user = users.get_current_user()
     #django user
-    user = User.all().filter('user = ',user).get()
+    user = User.all().filter('user = ', user).get()
     tags = request.POST.get('tags', None)
+    tags = tags.split(",")
     edit_key = request.POST.get('edit-key', None)
     if title and what:
         if edit_key:
             jot = Jot.get(edit_key)
             jot.title = title
             jot.what = what
-            jot.tags = [tags]
+            jot.tags = tags
             jot.put()
         else:
-            jot = Jot(title=title, what=what, tags=[tags], who=user)
+            jot = Jot(title=title, what=what, tags=tags, who=user)
             jot.create()
     return HttpResponseRedirect("/")
 
@@ -165,6 +176,38 @@ def vote(request):
     vote.put()
     return render_to_response('vote_stat.html', {'jot':{'like':like, 'unlike':unlike}}, context_instance=RequestContext(request))
 
+def view_by_tag(request, tag):
+    try:
+        page = int(request.GET['page'])
+    except:
+        page = 1
+    jots = Jot.all().filter('tags = ', tag).order('-when').fetch(utils.PAGE_SIZE, utils.PAGE_SIZE * (page - 1))
+    return list(request, jots)
+
+def page(request, path):
+    returned_page = Page.all().filter("path = ", path).get();
+    if not returned_page:
+        returned_page = Page(path=path)
+    return render_to_response('page.html', {'page':returned_page}, context_instance=RequestContext(request))
+
+@login_required
+def publish_page(request, path):
+    return render_to_response('publish_page.html', {'path':path}, context_instance=RequestContext(request))
+
+@login_required
+def create_page(request):
+    path = request.POST.get('path',None)
+    name = request.POST.get('name', None)
+    what = request.POST.get('what', None)
+    who = users.get_current_user()
+    #django user
+    who = User.all().filter('user = ', who).get()
+    edit_key = request.POST.get('edit-key', None)
+    if path and name and what:
+        page = Page(path=path,name=name,who=who,what=what)
+        page.save()
+        return HttpResponseRedirect('/page/'+path+'/')
+    return HttpResponseRedirect('/')
 """
     Google Friend Connection
 """

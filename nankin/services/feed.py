@@ -7,7 +7,7 @@ class LatestJot(Feed):
     def title(self, obj):
         return "新鲜出炉的文章"
     def link(self, obj):
-        return "http://nan-kin.appspot.com"
+        return "/"
     def description(self, obj):
         return "得瑟啥？趁热看..."
     def item_pubdate(self, item):

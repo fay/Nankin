@@ -4,7 +4,7 @@ dir
 74
 http://google-app-engine-django.googlecode.com/svn/trunk/appengine_django
 http://google-app-engine-django.googlecode.com/svn
-
+delete
 
 
 2009-02-10T14:37:49.192916Z
@@ -31,28 +31,35 @@ dir
 
 
 
-replace
+delete
 
 tests
 dir
 
 
 
-replace
+delete
 
 db
 dir
 
 
 
-replace
+delete
 
 conf
 dir
 
 
 
-replace
+delete
+
+sessions
+dir
+
+
+
+delete
 
 __init__.py
 file
@@ -88,19 +95,12 @@ mattbrown.nz
 
 20125
 
-sessions
-dir
-
-
-
-replace
-
 serializer
 dir
 
 
 
-replace
+delete
 
 mail.py
 file
@@ -209,5 +209,5 @@ dir
 
 
 
-replace
+delete
 

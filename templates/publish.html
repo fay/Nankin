@@ -36,7 +36,7 @@
 		</div>
 		<br>
 		<label>分类狂？</label>
-		<input type="text" name="tags" value="{{jot.tags|first}}">		
+		<input type="text" name="tags" value="{%for tag in jot.tags%}{{tag}},{%endfor%}">		
 		<br>
 		<input type="hidden" name="edit-key" value="{{jot.key}}"/>
 		<input type="submit" value="发布">

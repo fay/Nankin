@@ -7,6 +7,8 @@
 	</div>
 	<div class="content">
 		<div class="text">{{entry.what|safe}}</div>
+		<div class="count">{{forloop.counter}}</div>
+		<div class="none"></div>
 		{%if user.is_authenticated%}
 			<div class="edit-menu">
 				<a href="/delete/{{entry.key}}/?type=comment">删除</a> 
